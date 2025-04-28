@@ -1,15 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Adding Event</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<h1> Aggiungi un nuovo Evento/Servizio </h1>
+<% request.getAttribute("message"); %>
 
-	<!--  Form per l'inserimento di un nuovo servizio -->
-	<form action="../AddNewService" method="POST">
+	<form action="./AddNewService" method="POST">
 		<p> Titolo del servizio/Evento  <input type="text" name="serviceTitle" id="serviceTitle"> </p>
 		<p> Descrizione Servizio </p> <textarea name="serviceDescription"></textarea> 
 		<p> Aggiungi qualche opzione personalizzata </p> <textarea name="personalizedOption"> </textarea> 
@@ -27,6 +28,5 @@
 		<p> Data di fine <input type="date" name="endDate"> </p>
 		<input type="submit" name="submitBtn" id="submitBtn">
 	</form>
-
 </body>
 </html>
