@@ -13,6 +13,39 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>FormUP Camp</title>
+		
+		<!--  Verifica degli input  -->
+		
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+			  const form = document.querySelector("form");
+			
+			  form.addEventListener("submit", function(event) {
+			    // Recupera i valori dei campi
+			    const titolo = document.getElementById("titolo").value.trim();
+			    const descrizione = document.getElementById("descrizione").value.trim();
+			    const costo = document.getElementById("costo").value.trim();
+			    const dataInizio = document.getElementById("dataInizio").value;
+			    const dataFine = document.getElementById("dataFine").value;
+			
+			    let messaggiErrore = [];
+			
+			    // Controlla se i campi obbligatori sono vuoti
+			    if (!titolo) messaggiErrore.push("Il campo 'Titolo' è obbligatorio.");
+			    if (!descrizione) messaggiErrore.push("Il campo 'Descrizione' è obbligatorio.");
+			    if (!costo) messaggiErrore.push("Il campo 'Costo' è obbligatorio.");
+			    if (!dataInizio) messaggiErrore.push("Il campo 'Data Inizio' è obbligatorio.");
+			    if (!dataFine) messaggiErrore.push("Il campo 'Data Fine' è obbligatorio.");
+			
+			    // Se ci sono errori, impedisce l'invio del form e mostra gli errori
+			    if (messaggiErrore.length > 0) {
+			      event.preventDefault(); // Blocca l'invio del form
+			      alert(messaggiErrore.join("\n")); // Mostra gli errori
+			    }
+			  });
+			});
+		</script>
+
 	</head>
 	
 	<% 
