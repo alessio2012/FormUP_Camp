@@ -69,7 +69,7 @@
 	
 	<body>
 	
-	<a href="./ServiceControl?operation=selectAll"> Aggiorna</a>
+	<a href="../ServiceControl?operation=selectAll"> Aggiorna</a>
 	<h1> FORMUP CAMP</h1>
 	
 	<h3> Lista dei servizi disponibili</h3>
@@ -119,13 +119,13 @@
 		
 	</table>
 	
-	<form action="./ServiceControl?operation=insert" method="post">
+	<form action="../ServiceControl?operation=insert" method="post">
 		<fieldset>
 		    <legend>Informazioni Servizio</legend>
 		
 		    <p>
 		      <label for="titolo">Titolo:<br>
-		      <input type="text" id="titolo" name="titolo" required>
+		      <input type="text" id="titolo" name="titolo" >
 		      </label>
 		    </p>
 		
@@ -137,7 +137,7 @@
 		
 		    <p>
 		      <label for="costo">Costo (euro/pz):<br>
-		      <input type="number" id="costo" name="costo" step="0.01" required>
+		      <input type="number" id="costo" name="costo" step="0.01" >
 		      </label>
 		    </p>
 		
@@ -150,24 +150,24 @@
 		
 		    <p>
 		      <label for="dataInizio">Data Inizio:<br>
-		      <input type="date" id="dataInizio" name="dataInizio" required>
+		      <input type="date" id="dataInizio" name="dataInizio" >
 		      </label>
 		    </p>
 		
 		    <p>
 		      <label for="dataFine">Data Fine:<br>
-		      <input type="date" id="dataFine" name="dataFine" required>
+		      <input type="date" id="dataFine" name="dataFine" >
 		      </label>
 		    </p>
 		
 		    <p>
-		      <label for="idCategoria">Categoria:<br>
+		      <label for="idCategoria">Categoria: (da configurare)<br>
 		      <input type="text" id="idCategoria" name="idCategoria" maxlength="30">
 		      </label>
 		    </p>
 		
 		    <p>
-		      <input type="submit" value="Salva">
+		      <input type="submit" value="Aggiugi">
 		    </p>
 		</fieldset>
 	
