@@ -1,12 +1,11 @@
 
 
-<%@ page 
-		language="java" 
-		contentType="text/html; charset=UTF-8"
-		pageEncoding="UTF-8"
-		import = " java.util.Collections" 
-		
-%>
+<%@ page import="formup.services.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.naming.*" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <!DOCTYPE html>
@@ -18,20 +17,16 @@
 	
 	<% 
 	
+	Collection<?> services = (Collection<?>) request.getAttribute("collection");
 	
-	Collection<ServicesBean> services = (Collection<?>) request.getAttribute("services");
-	if(services == null) {
-		response.sendRedirect("./ServiceControl");	
-		return;
-	}
-
+	ServicesBean service = (ServicesBean) request.getAttribute("product");
 	
 	%>
 	
 	<%  if( request.getAttribute("status") != null) {
 		
 			if( request.getAttribute("status").equals("successfull")  ) {%>
-				<script> alert("Inserito con successo"); </script>
+				<script> alert("Operazione avvenuta con successo"); </script>
 
 	<%		}
 		}
@@ -40,6 +35,8 @@
 	
 	
 	<body>
+	
+	<a href="./ServiceControl?operation=selectAll"> Aggiorna</a>
 	<h1> FORMUP CAMP</h1>
 	
 	<h3> Lista dei servizi disponibili</h3>
@@ -62,9 +59,34 @@
 			<td> 30-04-25 </td>
 			
 		</tr>
+		
+				<%
+			if (services != null && services.size() != 0) {
+				Iterator<?> it = services.iterator();
+				while (it.hasNext()) {
+					ServicesBean bean = (ServicesBean) it.next();
+		%>
+		<tr>
+			<td><%=bean.getIdServizio()%></td>
+			<td><%=bean.getTitolo()%></td>
+			<td><%=bean.isDisponibilita()%></td>
+			<td><%=bean.getDataInizio()%></td>
+			<td><%=bean.getDatafine()%></td>
+		</tr>
+		<%
+				}
+			} else {
+		%>
+		<tr>
+			<td colspan="6">Non ho trovato servizi disponibili</td>
+		</tr>
+		<%
+			}
+		%>
+		
 	</table>
 	
-	<form action="./ServiceControl" method="post">
+	<form action="./ServiceControl?operation=insert" method="post">
 		<fieldset>
 		    <legend>Informazioni Servizio</legend>
 		
@@ -88,7 +110,7 @@
 		
 		    <p>
 		      <label for="disponibilita">
-		        <input type="checkbox" id="disponibilita" name="disponibilita" value="true" disabled>
+		        <input type="checkbox" id="disponibilita" name="disponibilita">
 		        Disponibile
 		      </label>
 		    </p>
