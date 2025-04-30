@@ -45,8 +45,6 @@ public class DriverManagerConnectionPool  {
 	public synchronized Connection getConnection() throws SQLException {
 		Connection connection;
 		
-		System.out.println("Getting a new connection");
-
 		// ci sono connessioni libere?
 		if (!dbConnections.isEmpty()) {
 			

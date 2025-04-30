@@ -1,5 +1,6 @@
 package formup.services;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,8 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-
 import javax.sql.DataSource;
 
 import formup.db.DriverManagerConnectionPool;
@@ -52,11 +51,11 @@ public class ServiceControl extends HttpServlet {
 		System.out.println("INFO: [formup.services.ServiceControl] Trying to add a new Service Bean ");
 		try {
 			ServicesBean bean = new ServicesBean();
-			bean.setTitolo("MERCATINI DI NATALE");
-			bean.setDescrizione("MERCATINI DI NATALE");
-			bean.setCosto(5.90);
-			bean.setDataInizio( Date.valueOf(LocalDate.now()) );
-			bean.setDatafine( Date.valueOf(LocalDate.now()) );
+			bean.setTitolo( request.getParameter("titolo") );
+			bean.setDescrizione( request.getParameter("descrizione") );
+			bean.setCosto( Double.valueOf(request.getParameter("costo") ) );
+			bean.setDataInizio( Date.valueOf( request.getParameter("dataInizio")  ) );
+			bean.setDatafine(Date.valueOf( request.getParameter("dataFine")  )  );
 			
 			System.out.println(ColoredText.ANSI_GREEN_BG + "INFO: [formup.services.ServiceControl] Bean addedd Successfully" + ColoredText.ANSI_RESET );
 			System.out.println( bean.toString() );
@@ -66,7 +65,10 @@ public class ServiceControl extends HttpServlet {
 			System.err.println("ERROR: [formup.services.ServiceControl] An error occurred while trying to adding a new bean" + e.getMessage());
 		}
 		
+		request.setAttribute("status", "successfull");
 		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+		dispatcher.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

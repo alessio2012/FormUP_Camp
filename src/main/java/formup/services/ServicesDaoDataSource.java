@@ -2,9 +2,11 @@ package formup.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
@@ -75,9 +77,45 @@ public class ServicesDaoDataSource implements ServicesInterface {
 	}
 
 	@Override
-	public Collection<ServicesBean> retrieveAll(String order) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ServicesBean> retrieveAll() throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<ServicesBean> services = new LinkedList<ServicesBean>();
+
+		String selectSQL = "SELECT * FROM " + ServicesDaoDataSource.TABLE_NAME;
+		
+		
+		System.out.println("INFO: [formup.services.ServicesDaoDataSource:bean] Trying to SELECT FROM database a ALL services");
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				ServicesBean bean = new ServicesBean();
+
+				bean.setIdServizio(rs.getInt("idServizio"));
+				bean.setTitolo(rs.getString("titolo"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setCosto(rs.getInt("costo"));
+				bean.setDataInizio(rs.getDate("dataInizio"));
+				bean.setDatafine(rs.getDate("dataFine"));
+				bean.setDisponibilita(rs.getBoolean("disponibilita"));
+				
+				services.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return services;
 	}
 	
 
