@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<% request.getAttribute("message"); %>
+	<% 
+	request.getAttribute("message"); 
+	if(  request.getAttribute("message") == "successful" ) { /**/ }
+	%>
 
 	<form action="./AddNewService" method="POST">
 		<p> Titolo del servizio/Evento  <input type="text" name="serviceTitle" id="serviceTitle"> </p>
@@ -28,5 +31,7 @@
 		<p> Data di fine <input type="date" name="endDate"> </p>
 		<input type="submit" name="submitBtn" id="submitBtn">
 	</form>
+	
+	
 </body>
 </html>

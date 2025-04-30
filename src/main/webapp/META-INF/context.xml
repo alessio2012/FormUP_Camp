@@ -1,0 +1,12 @@
+<Context>
+    <Resource name="jdbc/db_formup"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/db_formup"
+              username="root"
+              password="admin"
+              maxTotal="10"
+              maxIdle="5"
+              maxWaitMillis="10000"/>
+</Context>
