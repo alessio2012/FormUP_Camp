@@ -1,6 +1,6 @@
 
 
-<%@ page import="formup.services.*" %>
+<%@ page import="admin.services.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.naming.*" %>
 <%@ page import="javax.sql.DataSource" %>
@@ -69,7 +69,7 @@
 	
 	<body>
 	
-	<a href="../ServiceControl?operation=selectAll"> Aggiorna</a>
+	<a href="./ServiceControl?operation=selectAll"> Aggiorna</a>
 	<h1> FORMUP CAMP</h1>
 	
 	<h3> Lista dei servizi disponibili</h3>
@@ -119,7 +119,7 @@
 		
 	</table>
 	
-	<form action="../ServiceControl?operation=insert" method="post">
+	<form action="./ServiceControl?operation=insert" method="post">
 		<fieldset>
 		    <legend>Informazioni Servizio</legend>
 		

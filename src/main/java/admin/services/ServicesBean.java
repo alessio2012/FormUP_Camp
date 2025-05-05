@@ -1,4 +1,4 @@
-package formup.services;
+package admin.services;
 
 import java.io.Serializable;
 import java.sql.Date;
