@@ -1,4 +1,4 @@
-package admin.users;
+package formup.admin.users;
 
 public class UserBean {
 	

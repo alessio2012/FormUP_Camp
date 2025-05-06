@@ -1,4 +1,4 @@
-package admin.services;
+package formup.admin.services;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,8 +14,8 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
-import admin.DefaultBeanInterface;
-import formup.db.DriverManagerConnectionPool;
+import formup.DefaultBeanInterface;
+import formup.conf.db.DriverManagerConnectionPool;
 import formup.utilities.ColoredText;
 
 /**

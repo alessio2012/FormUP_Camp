@@ -1,4 +1,4 @@
-package admin.users;
+package formup.admin.users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,7 @@ import java.util.Collection;
 
 import javax.sql.DataSource;
 
-import admin.DefaultBeanInterface;
-import admin.services.ServicesDaoDataSource;
+import formup.DefaultBeanInterface;
 import formup.utilities.ColoredText;
 
 public class UserDaoDataSource implements DefaultBeanInterface<UserBean>{

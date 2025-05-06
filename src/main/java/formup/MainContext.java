@@ -1,16 +1,5 @@
-/*
-███████╗ ██████╗ ██████╗ ███╗   ███╗██╗   ██╗██████╗ 
-██╔════╝██╔═══██╗██╔══██╗████╗ ████║██║   ██║██╔══██╗
-█████╗  ██║   ██║██████╔╝██╔████╔██║██║   ██║██████╔╝
-██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║██║   ██║██╔═══╝ 
-██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║╚██████╔╝██║     
-╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝     
- @dicaprioale - mat. 05121/19548 - v. 
-                                                  
- MAIN CONTEXT                                 
-                                                  
- * 
- */
+package formup;
+
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,7 +10,7 @@ import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
-import formup.db.DriverManagerConnectionPool;
+import formup.conf.db.DriverManagerConnectionPool;
 import formup.utilities.ColoredText;
 
 @WebListener

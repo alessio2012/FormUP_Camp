@@ -1,4 +1,4 @@
-package admin.services;
+package formup.admin.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
-import admin.DefaultBeanInterface;
+import formup.DefaultBeanInterface;
 import formup.utilities.ColoredText;
 
 public class ServicesDaoDataSource implements DefaultBeanInterface<ServicesBean> {

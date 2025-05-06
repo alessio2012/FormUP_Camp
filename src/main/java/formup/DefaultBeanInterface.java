@@ -1,9 +1,8 @@
-package admin;
+package formup;
 
 import java.sql.SQLException;
 import java.util.Collection;
 
-import admin.services.ServicesBean;
 
 public interface DefaultBeanInterface<T> {
 	

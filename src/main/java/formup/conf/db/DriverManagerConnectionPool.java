@@ -1,4 +1,4 @@
-package formup.db;
+package formup.conf.db;
 
 import java.sql.Connection;
 import formup.utilities.*;
