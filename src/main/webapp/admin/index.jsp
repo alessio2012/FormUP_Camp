@@ -10,6 +10,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -71,152 +73,157 @@
 	
 	<body>
 	
-	<a href="./ServiceControl?operation=selectAll"> Aggiorna</a>
-	<h1> FORMUP CAMP</h1>
-	
-	<h3> Lista dei servizi disponibili</h3>
-	
-	<table border="1"> 
-		<tr> 
-			<th> # </th>
-			<th> Titolo </th>
-			<th> Status Servizio</th>
-			<th> Data Inizio </th>
-			<th> Data Fine </th>
+		<div class="container">
 			
-		</tr>
-		
-		<tr> 
-			<td> -1 </td> 
-			<td> Estate Ragazzi </td>
-			<td> Disponibile </td>
-			<td> 30-04-25 </td>
-			<td> 30-04-25 </td>
+			<a href="./ServiceControl?operation=selectAll"> Aggiorna</a>
+			<h1> FORMUP CAMP</h1>
 			
-		</tr>
-		
+			<h3> Lista dei servizi disponibili</h3>
+			
+			<table border="1"> 
+				<tr> 
+					<th> # </th>
+					<th> Titolo </th>
+					<th> Status Servizio</th>
+					<th> Data Inizio </th>
+					<th> Data Fine </th>
+					
+				</tr>
+				
+				<tr> 
+					<td> -1 </td> 
+					<td> Estate Ragazzi </td>
+					<td> Disponibile </td>
+					<td> 30-04-25 </td>
+					<td> 30-04-25 </td>
+					
+				</tr>
+				
+						<%
+					if (services != null && services.size() != 0) {
+						Iterator<?> it = services.iterator();
+						while (it.hasNext()) {
+							ServicesBean bean = (ServicesBean) it.next();
+				%>
+				<tr>
+					<td><%=bean.getIdServizio()%></td>
+					<td><%=bean.getTitolo()%></td>
+					<td><%=bean.isDisponibilita()%></td>
+					<td><%=bean.getDataInizio()%></td>
+					<td><%=bean.getDatafine()%></td>
+				</tr>
 				<%
-			if (services != null && services.size() != 0) {
-				Iterator<?> it = services.iterator();
-				while (it.hasNext()) {
-					ServicesBean bean = (ServicesBean) it.next();
-		%>
-		<tr>
-			<td><%=bean.getIdServizio()%></td>
-			<td><%=bean.getTitolo()%></td>
-			<td><%=bean.isDisponibilita()%></td>
-			<td><%=bean.getDataInizio()%></td>
-			<td><%=bean.getDatafine()%></td>
-		</tr>
-		<%
-				}
-			} else {
-		%>
-		<tr>
-			<td colspan="6">Non ho trovato servizi disponibili</td>
-		</tr>
-		<%
-			}
-		%>
+						}
+					} else {
+				%>
+				<tr>
+					<td colspan="6">Non ho trovato servizi disponibili</td>
+				</tr>
+				<%
+					}
+				%>
+				
+			</table>
+			
+			<form action="./ServiceControl?operation=insert" method="post">
+				<fieldset>
+				    <legend>Informazioni Servizio</legend>
+				
+				    <p>
+				      <label for="titolo">Titolo:<br>
+				      <input type="text" id="titolo" name="titolo" >
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="descrizione">Descrizione:<br>
+				      <textarea id="descrizione" name="descrizione" rows="4" cols="50"></textarea>
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="costo">Costo (euro/pz):<br>
+				      <input type="number" id="costo" name="costo" step="0.01" >
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="disponibilita">
+				        <input type="checkbox" id="disponibilita" name="disponibilita">
+				        Disponibile
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="dataInizio">Data Inizio:<br>
+				      <input type="date" id="dataInizio" name="dataInizio" >
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="dataFine">Data Fine:<br>
+				      <input type="date" id="dataFine" name="dataFine" >
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="idCategoria">Categoria: (da configurare)<br>
+				      <input type="text" id="idCategoria" name="idCategoria" maxlength="30">
+				      </label>
+				    </p>
+				
+				    <p>
+				      <input type="submit" value="Aggiugi">
+				    </p>
+				</fieldset>
+			
+			</form>
+			
+			
+			
+			<form action="./UserControl?operation=insert" method="post">
+				<fieldset>
+				    <legend>Informazioni Utente</legend>
+				
+				    <p>
+				      <label for="titolo">Nome utente:<br>
+				      <input type="text" id="username" name="username" >
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="email">Email:<br>
+				      <input type="text" id="email" name="email" rows="4" cols="50"></textarea>
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="nome">Nome:<br>
+				      <input type="text" id="nome" name="nome"  >
+				      </label>
+				    </p>
+				    
+				    <p>
+				      <label for="cognome">Cognome:<br>
+				      <input type="text" id="cognome" name="cognome"  >
+				      </label>
+				    </p>
+				
+				    <p>
+				      <label for="password">
+				        Password <input type="password" id="password" name="password">
+				      </label>
+				    </p>
 		
-	</table>
+				    <p>
+				      <input type="submit" value="Aggiugi">
+				    </p>
+				</fieldset>
+			
+			</form>
+		</div>
 	
-	<form action="./ServiceControl?operation=insert" method="post">
-		<fieldset>
-		    <legend>Informazioni Servizio</legend>
-		
-		    <p>
-		      <label for="titolo">Titolo:<br>
-		      <input type="text" id="titolo" name="titolo" >
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="descrizione">Descrizione:<br>
-		      <textarea id="descrizione" name="descrizione" rows="4" cols="50"></textarea>
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="costo">Costo (euro/pz):<br>
-		      <input type="number" id="costo" name="costo" step="0.01" >
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="disponibilita">
-		        <input type="checkbox" id="disponibilita" name="disponibilita">
-		        Disponibile
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="dataInizio">Data Inizio:<br>
-		      <input type="date" id="dataInizio" name="dataInizio" >
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="dataFine">Data Fine:<br>
-		      <input type="date" id="dataFine" name="dataFine" >
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="idCategoria">Categoria: (da configurare)<br>
-		      <input type="text" id="idCategoria" name="idCategoria" maxlength="30">
-		      </label>
-		    </p>
-		
-		    <p>
-		      <input type="submit" value="Aggiugi">
-		    </p>
-		</fieldset>
 	
-	</form>
-	
-	
-	
-	<form action="./UserControl?operation=insert" method="post">
-		<fieldset>
-		    <legend>Informazioni Utente</legend>
-		
-		    <p>
-		      <label for="titolo">Nome utente:<br>
-		      <input type="text" id="username" name="username" >
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="email">Email:<br>
-		      <input type="text" id="email" name="email" rows="4" cols="50"></textarea>
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="nome">Nome:<br>
-		      <input type="text" id="nome" name="nome"  >
-		      </label>
-		    </p>
-		    
-		    <p>
-		      <label for="cognome">Cognome:<br>
-		      <input type="text" id="cognome" name="cognome"  >
-		      </label>
-		    </p>
-		
-		    <p>
-		      <label for="password">
-		        Password <input type="password" id="password" name="password">
-		      </label>
-		    </p>
-
-		    <p>
-		      <input type="submit" value="Aggiugi">
-		    </p>
-		</fieldset>
-	
-	</form>
 		
 	
 	</body>
