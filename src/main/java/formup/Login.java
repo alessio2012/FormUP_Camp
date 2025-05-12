@@ -9,9 +9,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import formup.admin.users.UserBean;
+import formup.admin.users.UserDaoDataSource;
+import formup.utilities.HashingMD5;
 import formup.utilities.UserToken;
 
 /**
@@ -37,34 +43,50 @@ public class Login extends HttpServlet {
 		System.out.println("INFO: [formup.Login] An user is trying to connect");
 
 		
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		List<String> errors = new ArrayList<>(); // errori
+	
     	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("login.jsp"); // ridirezionamento verso la pagina di login
 
-		if(username == null || username.trim().isEmpty()) {
-			errors.add("Il campo username non può essere vuoto!");
-		}
-        if(password == null || password.trim().isEmpty()) {
-        	errors.add("Il campo password non può essere vuoto!");
-		}
-        if (!errors.isEmpty()) {
-        	request.setAttribute("errors", errors);
-        	dispatcherToLoginPage.forward(request, response);
-        	return; // note the return statement here!!!
-        }
+		if(email == null || email.trim().isEmpty()) { /* fai qualcosa */}
+        if(password == null || password.trim().isEmpty()) { /* fai altro  */ }
         
-        username = username.trim();
+        email = email.trim();
         password = password.trim();
-		
-		if(username.equals("admin") && password.equals("mypass")){ //admin
-			request.getSession().setAttribute("token", UserToken.ADMIN); //inserisco il token nella sessione
-			response.sendRedirect("admin/index.jsp");
-		} else {
-			errors.add("Username o password non validi!");
-			request.setAttribute("errors", errors);
-			dispatcherToLoginPage.forward(request, response);
+        
+		String hashedPassword = HashingMD5.getMd5( password );
+        
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+        UserBean user = new UserBean();
+        UserDaoDataSource userDAO = new UserDaoDataSource(ds);
+        
+        try {
+			user = userDAO.retrieveByEmail(email);
+			
+			if( user.getPassword().equals(hashedPassword) && user.getEmail().equals(email) ) {
+				request.getSession().setAttribute("token", UserToken.COMMON); //inserisco il token nella sessione
+				response.sendRedirect("common/index.jsp");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+        
+		
+        
+        
+        /*
+        try {
+			userDAO.retrieveByName("llexio");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+ 
+        
+        
+        
 		
 	}
 

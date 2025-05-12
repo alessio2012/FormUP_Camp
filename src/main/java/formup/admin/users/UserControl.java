@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 import formup.utilities.ColoredText;
+import formup.utilities.HashingMD5;
 
 /**
  * Servlet implementation class UserControl
@@ -32,6 +33,7 @@ public class UserControl extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("SONO NEL GET!");
 
 		if (isDataSource) {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
@@ -43,8 +45,9 @@ public class UserControl extends HttpServlet {
 			try {
 				UserBean bean = new UserBean();
 				bean.setNome( request.getParameter("nome") );
+				bean.setEmail( request.getParameter("email") );
 				bean.setCognome( request.getParameter("cognome") );
-				bean.setPassword( request.getParameter("password"));
+				bean.setPassword( HashingMD5.getMd5( request.getParameter("password") ) );
 				bean.setUsername( request.getParameter("username") );
 				
 				System.out.println(ColoredText.ANSI_GREEN_BG + "INFO: [formup.services.UserControl] Bean addedd Successfully" + ColoredText.ANSI_RESET );
@@ -62,6 +65,8 @@ public class UserControl extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} 
+		
+		
 	}
 
 	/**

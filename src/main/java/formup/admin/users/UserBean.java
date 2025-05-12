@@ -2,7 +2,7 @@ package formup.admin.users;
 
 public class UserBean {
 	
-	private String nome, cognome, username, password;
+	private String nome, cognome, username, password, email;
 	private int idUtente;
 	
 	public String getCognome() { return cognome; }
@@ -19,6 +19,11 @@ public class UserBean {
 	
 	public String getUsername() { return username; }
 	public void setUsername(String username) { this.username = username; }
+	
+	public String getEmail() { return email; }
+	public void setEmail( String e ) { this.email = e; }
+		
+	
 	@Override
 	public String toString() {
 		return "UserBean [nome=" + nome + ", cognome=" + cognome + ", username=" + username + ", password=" + password

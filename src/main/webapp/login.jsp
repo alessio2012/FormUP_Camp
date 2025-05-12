@@ -19,8 +19,8 @@ if (errors != null){
 <form action="Login" method="post"> 
 <fieldset>
      <legend>Login Custom</legend>
-     <label for="username">Username</label>
-     <input id="username" type="text" name="username" placeholder="enter username">
+     <label for="email">Email</label>
+     <input id="email" type="text" name="email" placeholder="enter email">
      <br>   
      <label for="password">Password</label>
      <input id="password" type="password" name="password" placeholder="enter password">

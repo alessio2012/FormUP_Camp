@@ -1,6 +1,6 @@
 
 
-<%@ page import="admin.services.*" %>
+<%@ page import="formup.admin.services.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.naming.*" %>
 <%@ page import="javax.sql.DataSource" %>
@@ -166,6 +166,49 @@
 		      </label>
 		    </p>
 		
+		    <p>
+		      <input type="submit" value="Aggiugi">
+		    </p>
+		</fieldset>
+	
+	</form>
+	
+	
+	
+	<form action="./UserControl?operation=insert" method="post">
+		<fieldset>
+		    <legend>Informazioni Utente</legend>
+		
+		    <p>
+		      <label for="titolo">Nome utente:<br>
+		      <input type="text" id="username" name="username" >
+		      </label>
+		    </p>
+		
+		    <p>
+		      <label for="email">Email:<br>
+		      <input type="text" id="email" name="email" rows="4" cols="50"></textarea>
+		      </label>
+		    </p>
+		
+		    <p>
+		      <label for="nome">Nome:<br>
+		      <input type="text" id="nome" name="nome"  >
+		      </label>
+		    </p>
+		    
+		    <p>
+		      <label for="cognome">Cognome:<br>
+		      <input type="text" id="cognome" name="cognome"  >
+		      </label>
+		    </p>
+		
+		    <p>
+		      <label for="password">
+		        Password <input type="password" id="password" name="password">
+		      </label>
+		    </p>
+
 		    <p>
 		      <input type="submit" value="Aggiugi">
 		    </p>
