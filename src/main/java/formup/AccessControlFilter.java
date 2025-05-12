@@ -30,11 +30,12 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 		
 		String token = (String) httpServletRequest.getSession().getAttribute("token");
 		String path = httpServletRequest.getServletPath();
-		System.out.println(path);
-		if (path.contains("/common/") && token.equals(UserToken.ADMIN)) {	
+
+		
+		if (path.contains("/common/") && token.equals(UserToken.ADMIN)   ) {	
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			return;
-		} else if (path.contains("/admin/") && (token==null || !token.equals(UserToken.ADMIN))) {
+		} else if (path.contains("/admin/") && (token==null || !token.equals(UserToken.ADMIN) || token.isEmpty() )) {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			return;
 		}

@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Formup Camp</title>
 </head>
 <body>
+
+<h1> Bentornato! <%=request.getSession().getAttribute("username") %></h1>
 
 </body>
 </html>

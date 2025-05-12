@@ -104,6 +104,7 @@ public class UserDaoDataSource implements DefaultBeanInterface<UserBean>{
 				user.setUsername(rs.getString("nomeUtente"));
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
+				user.setRuolo(rs.getString("ruolo"));
 			}
 			
 			
